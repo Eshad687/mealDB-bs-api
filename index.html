@@ -12,6 +12,7 @@
 </head>
 
 <body class="bg-light">
+    <!-- Searchbar and header -->
     <header>
         <h1 class="text-success text-center mt-5">Search Your Favourite Food !!!</h1>
         <div class="input-group my-3 w-50 mx-auto px-5">
@@ -24,13 +25,29 @@
     </header>
 
     <main>
-        <h2 id="no-result" style="display: none;" class="text-muted text-center align-middle mt-5 pt-5">No result
+        <!-- Notify messages and spinner -->
+        <div id="spinner" class="text-center ">
+            <div class="spinner-grow text-success" role="status">
+                <span class="sr-only"></span>
+            </div>
+            <div class="spinner-grow text-danger" role="status">
+                <span class="sr-only"></span>
+            </div>
+            <div class="spinner-grow text-warning" role="status">
+                <span class="sr-only"></span>
+            </div>
+        </div>
+        <h2 id="no-result" class="text-muted text-center align-middle mt-5 pt-5">No result
             Found!!!</h2>
+        <h2 id="error-message" class="text-danger text-center align-middle mt-5 pt-5">Something Went Wrong!!!</h2>
 
+
+        <!-- Meal details -->
         <section id="meal-detail" class="container mt-5">
 
         </section>
 
+        <!-- Search results -->
         <section class="container mt-5">
             <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 mt-5">
 
