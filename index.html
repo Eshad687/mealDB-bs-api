@@ -15,14 +15,18 @@
     <header>
         <h1 class="text-success text-center mt-5">Search Your Favourite Food !!!</h1>
         <div class="input-group my-3 w-50 mx-auto px-5">
-            <input id="search-field" type="text" class="form-control" placeholder="Food name"
+            <input id="search-field" type="text" class="form-control" placeholder="Search food"
                 aria-describedby="button-addon2">
             <button onclick="loadFoods()" class="btn btn-outline-success" type="button"
                 id="button-search">Search</button>
         </div>
+        <p id="empty-search" class="text-muted text-center"></p>
     </header>
 
     <main>
+        <h2 id="no-result" style="display: none;" class="text-muted text-center align-middle mt-5 pt-5">No result
+            Found!!!</h2>
+
         <section id="meal-detail" class="container mt-5">
 
         </section>

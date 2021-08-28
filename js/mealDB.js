@@ -6,41 +6,56 @@ const loadFoods = () => {
     const searchText = searchTextField.value;
     searchTextField.value = '';
 
+    if (searchText == '') {
+        document.getElementById('empty-search').innerText = 'Please write something on the search-bar';
+    }
+    else {
+        document.getElementById('empty-search').innerText = '';
+        const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
 
+        //we only need the meals. So, passing only the meals property. it is an array
+        fetch(url)
+            .then(res => res.json())
+            .then(data => displayFood(data.meals))
 
-    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText}`;
+    }
 
-    //we only need the meals. So, passing only the meals property. it is an array
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displayFood(data.meals))
 
 }
 
 const displayFood = meals => {
-    const searchResult = document.getElementById('search-result');
-    searchResult.textContent = '';
-    const details = document.getElementById('meal-detail');
-    details.textContent = '';
+    console.log(meals)
+    if (meals == null) {
+        console.log('ll')
+        document.getElementById('no-result').style.display = 'block';
+    }
+    else {
+        document.getElementById('no-result').style.display = 'none';
+        const searchResult = document.getElementById('search-result');
+        searchResult.textContent = '';
+        const details = document.getElementById('meal-detail');
+        details.textContent = '';
 
-    meals.forEach(meal => {
-        //each meal is an object
-        const div = document.createElement('div');
-        // console.log(meal)
-        div.classList.add('col');
-        div.innerHTML = ` 
-        <div onclick="mealDetails(${meal.idMeal})" class="card shadow">
-           <img height="250" width
-           "250" src="${meal.strMealThumb}" class="card-img-top p-3" alt="...">
-           <div class="card-body">
-              <h5 class="card-title">${meal.strMeal}</h5>
-              <p class="card-text">${meal.strInstructions.slice(0, 200)}</p>
-           </div>
-    </div>
-        
-        `
-        searchResult.appendChild(div);
-    });
+        meals.forEach(meal => {
+            //each meal is an object
+            const div = document.createElement('div');
+            // console.log(meal)
+            div.classList.add('col');
+            div.innerHTML = ` 
+            <div onclick="mealDetails(${meal.idMeal})" class="card shadow">
+               <img height="250" width
+               "250" src="${meal.strMealThumb}" class="card-img-top p-3" alt="...">
+               <div class="card-body">
+                  <h5 class="card-title">${meal.strMeal}</h5>
+                  <p class="card-text">${meal.strInstructions.slice(0, 200)}</p>
+               </div>
+        </div>
+            
+            `
+            searchResult.appendChild(div);
+        });
+    }
+
 
 }
 
